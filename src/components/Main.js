@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
 import Home from './Home';
 import Dashboard from './Dashboard';
 import About from './About';
@@ -9,18 +9,20 @@ import stockData from '../data';
 function Main(props) {
   return (
     <main>
-       <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} />
+       <Routes>
+        <Route path='/'>
+          <Route path="/home"  element={<Home/>} />
+          <Route path="/about" element={<About/>} />
           <Route
             path="/stocks/:symbol"
-            render={props => <Stock stockData={stockData} {...props} />}
+            element={<Stock stockData={stockData} />}
           />
           <Route
             path="/stocks"
-            render={props => <Dashboard {...props} stockData={stockData} />}
+            element={<Dashboard stockData={stockData} />}
           />
-   </Switch>
+          </Route>
+   </Routes>
     </main>
   );
 }

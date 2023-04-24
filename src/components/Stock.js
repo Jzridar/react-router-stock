@@ -1,7 +1,11 @@
 import React from 'react'
-
-const Stock = props => {
-  const stock = props.stockData.filter( d => d.symbol === props.match.params.symbol)[0]
+import {useParams} from "react-router-dom";
+function Stock (props) {
+  
+  const {symbol} = useParams()//Use clicked stock symbol
+  console.log(`${symbol}`)
+  const stocks = props.stockData.filter( d => d.symbol === symbol)
+  const stock = stocks[0]
   return (
     <div>
       <h3>Name: {stock.name}</h3>
